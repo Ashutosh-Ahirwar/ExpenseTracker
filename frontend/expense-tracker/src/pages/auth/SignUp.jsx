@@ -36,10 +36,10 @@ function SignUp() {
                 setError("Please enter a valid email address")
                 return
             }
-            if(!password){
-                setError("Please enter the password")
-                return
-            }
+            if (!password || password.length < 8) {
+                 setError("Password must be at least 8 characters long")
+                 return
+          }
             setError("")
 
 
