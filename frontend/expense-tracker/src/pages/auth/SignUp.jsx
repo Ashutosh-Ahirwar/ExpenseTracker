@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useEffect, useContext, useState } from 'react'
 import AuthLayout from '../../components/layouts/AuthLayout'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -9,6 +9,7 @@ import { API_PATHS } from '../../utils/apiPaths'
 import axiosInstance from '../../utils/axiosInstance'
 import { UserContext } from '../../context/userContext'
 import uploadImage from '../../utils/uploadImage'
+import { pingServer } from '../../utils/pingServer'
 
 function SignUp() {
      const [profilePic, setProfilePic] = useState(null)
@@ -21,6 +22,10 @@ function SignUp() {
     const {updateUser} = useContext(UserContext)
 
      const navigate = useNavigate()
+
+    useEffect(() => {
+        pingServer();
+    }, []);
 
      const handleSignUp = async(e)=>{
             e.preventDefault()
